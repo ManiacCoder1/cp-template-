@@ -52,4 +52,17 @@
   
   
   (we have to make a good function)...
+  ----------------------binary search for precisoin(double)----
+  double l = 0,r=c;
+    for(int i = 0;i<10000;i++){
+        double  m = (double)(l+r)/2.0;
+        db(m)
+        double d = (double)(m*m + sqrt(m));
+        db(d)
+        if(d<=c) l = m;
+        else if (d>c) r = m;
+      
+        
+    }
+    cout<<fixed<<setprecision(6)<<l;
     
