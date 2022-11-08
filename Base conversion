@@ -1,0 +1,50 @@
+ ---------------------------------any numnber to decimal-------------------------------
+ int  digit(char c){
+    if(c>='0' && c <='9') return c - '0';
+    else return (c - 'A') + 10;
+}
+long long any_to_decimal(string s,int base) {
+    reverse(s.begin(),s.end());
+    db(s)
+    ll power = 1;
+    ll ans = 0;
+    ll si = s.size();
+    for(int i = 0;i<si;i++){
+        int dig = digit(s[i]);
+        if(dig>=base) return -1;
+        ans = ans + (dig * power);// here the first value of power is zero
+        power = power * dig;// it is here to increase the value of power
+        
+    }
+    return ans;
+}
+void solve(){
+   string s;
+   int base;
+   cin>>s>>base;
+   cout<<any_to_decimal(s,base);
+
+}
+ 
+ ------------------------decimal to any number-------------------------
+ 
+ string  decimal_to_any(ll number,ll base){
+    string s;
+    int r;
+    while(number > 0){
+        r = number % base;
+        //cout<<r<<ln;
+        number/=base;
+        char c = r + '0';
+        //cout<<c<<ln;
+        s.pb(c);
+        
+    }
+    return s;
+ }
+void solve(){
+   ll number,base;
+   cin>>number>>base;
+   cout<<decimal_to_any(number,base);
+
+}
