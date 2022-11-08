@@ -1,0 +1,33 @@
+----------------------------------Big Integer Sum---------------------------------
+
+string  big_sum(string a,string b){
+    ll carry = 0;
+    string s;
+    reverse(a.begin(),a.end());
+    reverse(b.begin(),b.end());
+    if(a.size()<b.size()){
+        swap(a,b);
+    }
+    for(int i = 0;i<b.size();i++){
+        int sum = (a[i] - '0') + (b[i] - '0') + carry;
+        s.pb((sum % 10) + '0');
+        carry = sum / 10;
+    }
+    for(int i = b.size() ; i< a.size();i++){
+        int sum = (a[i] - '0') + carry;
+        s.pb((sum % 10) + '0');
+        carry = sum / 10;
+    }
+    if(carry) s.pb(carry + '0');
+    reverse(s.begin(),s.end());
+    return s;
+ 
+   
+   
+}
+void solve(){
+    string a,b,c;
+    cin>>a>>b;
+    cout<<big_sum(a,b)<<ln;
+}
+ 
