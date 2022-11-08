@@ -1,24 +1,64 @@
 
-int prime_foctor[100000];
-void prime_factors(int n){
+----------------------------------normal factor code---------------------------------------
+vector<ll>factor_list;
+ void fact(ll n){
     if(n%2==0){
-        cout<<2<<ln;
-        while(n%2==0) n/=2;
+       factor_list.pb(2);
+       while(n%2==0){
+        n/=2;
+       }
     }
-    for(int i = 3;i<=sqrt(n);i+=2){
+    db(factor_list)
+    for(int i = 3;i * i<=n;i+=2){
         if(n%i==0){
-            cout<<i<<ln;
-            while(n%i==0)n/=i;
+            factor_list.pb(i);
+            while(n % i==0) n/=i;
         }
     }
-    if(n>2) cout<<n;
-    
-}
-
+    if(n>1) factor_list.pb(n);
+ }
 void solve(){
-  int n;
-  cin>>n;
-  prime_factors(n);
-  
-  
-} 
+    ll n;
+    cin>>n;
+    fact(n);
+    //cout<<factor_list.size();
+    for(auto u:factor_list) cout<<u<<" ";
+   
+
+}
+---------------------------foctor with prime list----------------------
+bool is_prime[101];
+vector<ll> primes;
+ll N = 100;
+void sieve(){
+    primes.pb(2);
+    
+    for(int i = 3 ;i * i <= N ;i+=2){
+        if(is_prime[i] == false){
+            //primes.pb(i);
+            for(int j = 2 * i; j <= N; j+=i) is_prime[j] = true;
+        }
+    }
+    
+    for(int i = 2;i<=N;i++){
+         if(is_prime[i] == false) primes.pb(i);
+    }
+    //for(auto u: is_prime) cout<<u<<" ";
+}
+void solve(){
+   ll n;
+   cin>>n;
+   sieve();
+   vector<ll>fact;
+   for(int i = 0;primes[i] * primes[i]<=n ; i++){
+    if(n%primes[i]==0){
+        fact.pb(primes[i]);
+        while(n % primes[i]==0) n/=primes[i];
+    }
+   }
+   if(n>1) fact.pb(n);
+   for(auto u:fact) cout<<u<<" ";
+    cout<<ln;
+
+}
+ 
