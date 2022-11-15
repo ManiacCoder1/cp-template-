@@ -1,69 +1,42 @@
--------------------bfs---------------
-#include<bits/stdc++.h>
-using namespace std;
-vector<int> edges[10000];
-bool visited[10000];
-void bfs(){
-	queue<int> q;
-	q.push(1);
-	visited[1] = true;
-	while(!q.empty()){
-		cout<<q.front();
-		for(auto it: edges[q.front()]){
-			if(!visited[it]){
-			q.push(it);
-			visited[it] = 1;
-		}
-			
-		}
-		q.pop();
-	}
-	
-}
-
-int main(){
-	edges[1].emplace_back(2);
-	edges[2].emplace_back(1);
-	edges[1].emplace_back(3);
-	edges[3].emplace_back(1);
-	edges[1].emplace_back(5);
-	edges[5].emplace_back(1);
-	edges[2].emplace_back(4);
-	edges[4].emplace_back(2);
-	edges[5].emplace_back(4);
-	edges[4].emplace_back(5);
-	edges[3].emplace_back(4);
-	edges[4].emplace_back(3);
-	bfs();
-	
-}
------------------------------------dfs--------------------------------
-vector<int> edges[10000];
-bool visited[100000];
-void dfs(int node){
-	cout<<node<<" ";
-	visited[node] = true;
-	for(auto it: edges[node]){
-		if(!visited[it]){
-			dfs(it);
-		}
-	}
-}
-
-
+------------ adjacency matrix----------------
 void solve(){
-    edges[1].emplace_back(2);
-    edges[2].emplace_back(1);
-    edges[1].emplace_back(3);
-    edges[3].emplace_back(1);
-    edges[2].emplace_back(4);
-    edges[4].emplace_back(2);
-    edges[3].emplace_back(4);
-    edges[4].emplace_back(3);
-    edges[5].emplace_back(6);
-    edges[6].emplace_back(5);
-    
-    for(int i = 1;i<=6;i++){
-    	if(!visited[i]) dfs(i);
+   int n,m;
+   cin>>n>>m;
+   int a[n][n];
+   memset(a,0,sizeof(a));
+   for(int i = 0;i < n;i++){
+    int u,v;
+    cin>>u>>v;
+    a[u-1][v-1] = 1;
+    a[v-1][u-1] = 1;
+   }
+   for(int i = 0;i<n;i++){
+    for(int j = 0;j<n;j++){
+        cout<<a[i][j]<<" ";
     }
-   } 
+    cout<<ln;
+   }
+
+
+}
+----------------------adjacency list-----------------
+void solve(){
+   int n,m;
+
+   cin>>n>>m;
+   //vector<int,vector<int>> edg;
+   vector<int> edge[n+1];// it is the way to declare array in a vector
+   for(int i = 0;i<m;i++){
+    int u,v;
+    cin>>u>>v;
+    edge[u].pb(v);
+    edge[v].pb(u);
+   }
+   for(int i = 1;i<=n ; i++){
+    cout<<i<<"-> ";
+    for(int j = 0;j<edge[i].size();j++){
+        cout<<edge[i][j]<<" ";
+    }
+    cout<<ln;
+   }
+ 
