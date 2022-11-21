@@ -1,0 +1,22 @@
+---------------------all possible subsequence of a string------------------------
+input -> abc
+
+void solve(){
+   string s;
+   cin>>s;
+   int l = s.size();
+   int n = (1<<l) - 1;
+   db(n)
+   cout<<"{ }"<<ln;
+   for(int i = 1; i <=n;i++){
+    int cnt = i,j = 0;
+    while(cnt > 0){
+        if(cnt & 1)cout<<s[j]<<" ";
+            j++;
+            cnt = cnt>>1;
+        
+    }
+    cout<<endl;
+   }
+
+}
