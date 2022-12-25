@@ -1,0 +1,35 @@
+
+--------------------------------Basic Ternary Search---------------------------------
+
+int n;
+	cin>>n;
+	int a[n];
+	for(int i = 0;i<n;i++) cin>>a[i];
+	int q;
+    cin>>q;
+	int l = 0,r = n-1;
+	int flag = 0,cnt;
+    while(r>=l){
+    	int mid1 = l + (r-l)/3;
+    	int mid2 = r - (r-l)/3;
+    	if(q == a[mid1]){
+    		flag = 1;
+    		cnt = mid1;
+    		break;
+    	}
+    	else if(q == a[mid2]){
+    		flag = 1;
+    		cnt = mid2;
+    		break;
+    	}
+    	else if(q<a[mid1]) r = mid1 - 1;
+    	else if(q>a[mid2]) l = mid2 + 1;
+    	else {
+    		l = mid1 + 1;
+    		r = mid2 -1 ;
+    	}
+
+
+    }
+    cout<<cnt;
+	
